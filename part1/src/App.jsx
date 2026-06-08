@@ -1,76 +1,60 @@
+import { useState } from 'react'
+
+
+
+// // The component only uses the counter field of its props.
+// // This means we can simplify the component by using
+// // destructuring, like so:
+// const Display = ({ counter }) => {
+//     return (
+//         <div>{counter}</div>
+//     )
+// }
+// The function defining the component contains only the return statement,
+// so we can define the function using the more compact form of arrow functions:
+const Display = ({ counter }) => <div>{counter}</div>
+
+// const Button = (props) => {
+//     return (
+//         <button onClick={props.onClick}>
+//             {props.text}
+//         </button>
+//     )
+// }
+// We can use destructuring to get only the required fields from props,
+// and use the more compact form of arrow functions:
+const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>
+
 const App = () => {
-    const course = {
-        name: 'Half Stack application development',
-        parts: [
-            {
-                name: 'Fundamentals of React',
-                exercises: 10
-            },
-            {
-                name: 'Using props to pass data',
-                exercises: 7
-            },
-            {
-                name: 'State of a component',
-                exercises: 14
-            }
-        ]
+    const [ counter, setCounter ] = useState(0)
+    console.log('rendering with counter value', counter)
+
+
+
+    const increaseByOne = () => {
+        console.log('increasing, value before', counter)
+        setCounter(counter + 1)
     }
 
-
-
-    const Header = (props) => {
-        return <h1>{props.course.name}</h1>
+    const decreaseByOne = () => {
+        console.log('decreasing, value before', counter)
+        setCounter(counter - 1)
     }
 
-
-
-    const Part = (props)=>{
-        console.log(props)
-        return (
-            <p>
-                {props.name} {props.exercises}
-            </p>
-        )
-    }
-    const Content = (props)=>{
-        console.log(props)
-        return(
-            <>
-                <Part name={props.course.parts[0].name} exercises={props.course.parts[0].exercises}/>
-                <Part name={props.course.parts[1].name} exercises={props.course.parts[1].exercises}/>
-                <Part name={props.course.parts[2].name} exercises={props.course.parts[2].exercises}/>
-
-            </>
-        )
+    const setToZero = () => {
+        console.log('resetting to zero, value before', counter)
+        setCounter(0)
     }
 
-    const sum = (exercise1,exercise2,exercise3) =>
-    {
-        return exercise1+ exercise2 + exercise3
-    }
-
-
-
-    const Total = (props)=>{
-        console.log(props)
-        return (
-            <p>Number of exercises {sum(props.course.parts[0].exercises,props.course.parts[1].exercises,props.course.parts[2].exercises)}</p>
-        )
-    }
 
     return (
         <div>
-            <Header course={course}/>
-            <Content course={course}/>
-            <Total course={course}/>
+            <Display counter={counter} />
+            <Button onClick={increaseByOne} text="plus" />
+            <Button onClick={setToZero} text="zero" />
+            <Button onClick={decreaseByOne} text="minus" />
         </div>
     )
 }
 
 export default App
-
-
-
-
-
