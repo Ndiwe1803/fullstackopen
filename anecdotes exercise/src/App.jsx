@@ -34,16 +34,29 @@ const App = () => {
     console.log("this is votes array:",votes)
   }
 
+  const highestVotes = Math.max(...votes);
+  const index = votes.indexOf(highestVotes);
+
   return (
       <>
         <div>
-          {anecdotes[selected]}
-          <p>Vote:{copy[selected]}</p>
+          <div>
+            <h1>Anecdote of the day</h1>
+            {anecdotes[selected]}
+            <p>has votes:{votes[selected]}</p>
+          </div>
+          <div>
+            <button onClick={handleAnecdotesClick}>next anecdotes</button>
+            <button onClick={handleVoteClick}>Vote</button>
+          </div>
         </div>
         <div>
-          <button onClick={handleAnecdotesClick}>next anecdotes</button>
-          <button onClick={handleVoteClick}>Vote</button>
+          <h1>Anecdote with the highest votes</h1>
+          <p>{anecdotes[index]}</p>
+          <p>Number of votes:{votes[index]}</p>
+
         </div>
+
       </>
 
   )
