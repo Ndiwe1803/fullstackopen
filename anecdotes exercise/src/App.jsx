@@ -1,5 +1,8 @@
 import { useState } from 'react'
 
+
+
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -13,6 +16,9 @@ const App = () => {
   ]
 
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState(new Array(8).fill(0))
+  const copy = [...votes]
+
 
   const handleAnecdotesClick = ()=>{
     if (selected >= 7 )
@@ -21,13 +27,22 @@ const App = () => {
       setSelected(selected+1)
   }
 
+  const handleVoteClick = ()=>{
+    copy[selected]+=1
+    setVotes(copy)
+    console.log("this is copy array:",copy)
+    console.log("this is votes array:",votes)
+  }
+
   return (
       <>
         <div>
           {anecdotes[selected]}
+          <p>Vote:{copy[selected]}</p>
         </div>
         <div>
           <button onClick={handleAnecdotesClick}>next anecdotes</button>
+          <button onClick={handleVoteClick}>Vote</button>
         </div>
       </>
 
