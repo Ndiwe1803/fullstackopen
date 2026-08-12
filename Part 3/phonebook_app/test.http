@@ -3,3 +3,30 @@ GET https://examples.http-client.intellij.net/get
     ?generated-in=WebStorm
 
 ###
+DELETE http://localhost:3001/api/persons/2 HTTP/1.1
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Arto Hellas",
+  "number": "42398230703032"
+}
+
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Arto Hellas",
+  "number": "42398230703032"
+}
+
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
+
+{
+  "name": "ndiwe",
+  "number": "42398230703032"
+}
